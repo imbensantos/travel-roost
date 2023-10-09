@@ -19,9 +19,9 @@ const Logo = (props: Props) => {
       />
       <Image
         alt="Travel Roost"
-        className="hidden lg:block align-baseline cursor-pointer"
-        height={30}
-        width={230}
+        className="hidden sm:-mt-3 lg:block align-baseline cursor-pointer"
+        height={40}
+        width={260}
         src={"/images/logo-text.svg"}
       />
     </div>

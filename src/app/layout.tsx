@@ -1,10 +1,12 @@
 import type { Metadata } from 'next'
-import { League_Spartan } from 'next/font/google'
+import { Nunito } from 'next/font/google'
 
 import './globals.css'
 import Navbar from '@components/Navbar'
+import RegisterModal from '@components/Modals/RegisterModal'
+import ToasterProvider from '@providers/ToasterProvider'
 
-const leagueSpartan = League_Spartan({
+const leagueSpartan = Nunito({
   subsets: ['latin']
 })
 
@@ -22,6 +24,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={leagueSpartan.className}>
+        <ToasterProvider />
+        <RegisterModal />
         <Navbar />
         {children}
       </body>

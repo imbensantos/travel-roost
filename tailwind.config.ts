@@ -14,16 +14,13 @@ const config: Config = {
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
       colors: {
-        primary: {
-          DEFAULT: "#426133",
-          100: "#C1D9B6"
-        },
         accent: {
           DEFAULT: "#e74c3c",
           600: "#9A3247",
           500: "#b73b54",
           100: "#ffd700"
         },
+        danger: "#f44336",
         gray: {
           100: "#f0f0ef",
           200: "#d0d2cf",
@@ -45,7 +42,13 @@ const config: Config = {
           700: "#5a5e59",
           800: "#414340",
           900: "#2a2b29"
-        }
+        },
+        primary: {
+          DEFAULT: "#426133",
+          100: "#C1D9B6"
+        },
+        success: "#499847",
+        warning: "#d09119",
       }
     },
   },
