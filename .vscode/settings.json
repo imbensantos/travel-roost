@@ -1,5 +1,7 @@
 {
   "cSpell.ignoreWords": [
+    "NEXTAUTH",
+    "prismadb",
     "setshow",
     "zustand"
   ]
