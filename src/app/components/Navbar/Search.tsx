@@ -1,6 +1,5 @@
-"use client"
-
 import {BiSearch} from "react-icons/bi"
+
 type Props = {}
 
 const Search = (props: Props) => {
