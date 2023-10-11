@@ -7,7 +7,7 @@ import { FieldValues, SubmitHandler, useForm } from "react-hook-form"
 import toast from "react-hot-toast"
 import axios from "axios"
 
-import { AiFillGithub } from "react-icons/ai"
+import { AiFillFacebook, AiFillGithub } from "react-icons/ai"
 import { FcGoogle } from "react-icons/fc"
 
 import useRegisterModal from "@hooks/useRegisterModal"
@@ -94,17 +94,24 @@ const LoginModal = () => {
       `}>
         or
       </div>
+      {/* <Button 
+        outline 
+        label="Continue with Facebook"
+        icon={AiFillFacebook}
+        iconClassName={`text-[#4267B2]`}
+        onClick={() => signIn('facebook')}
+      /> */}
       <Button 
         outline 
         label="Continue with Google"
         icon={FcGoogle}
-        onClick={() => {}}
+        onClick={() => signIn('google')}
       />
       <Button 
         outline 
         label="Continue with Github"
         icon={AiFillGithub}
-        onClick={() => {}}
+        onClick={() => signIn('github')}
       />
       <div className="text-neutral-500 text-center mt-4 font-light">
         <p className="flex flex-row justify-center items-center gap-2">
