@@ -7,8 +7,9 @@ import useRentModal from '@hooks/useRentModal'
 
 import Modal from '@components/Modals/Modal'
 import Heading from '@components/Heading'
-import { CATEGORIES_LIST } from '@components/Categories'
-import CategoryInput from '@components/Inputs/CategoryInput'
+import CategoryStep from './CategoryStep'
+import CountrySelection from '@components/Inputs/CountrySelection'
+import LocationStep from './LocationStep'
 
 enum STEPS {
   CATEGORY = 0,
@@ -53,10 +54,6 @@ const RentModal = () => {
     })
   }
 
-
-  const selectedCategory = watch('category')
-  const handleCategoryInput = (input: string) => setCustomValue('category', input)
-
   const handleBack = () => {
     if(step === STEPS.CATEGORY) return
     setStep(value => value - 1)
@@ -73,36 +70,9 @@ const RentModal = () => {
     return 'Back'
    }, [step])
 
-  let bodyContent = (
-    <div className='flex flex-col gap-8'>
-      <Heading 
-        title="Which of these best describes your place?"
-        subtitle='Pick a category'
-      />
-      <div 
-        className='
-          grid
-          grid-cols-1
-          md:grid-cols-2
-          gap-3
-          max-h-[50vh]
-          overflow-y-auto
-        '
-      >
-        {CATEGORIES_LIST.map(item => (
-          <div key={item.label} className='col-span-1'>
-            <CategoryInput
-              onClick={handleCategoryInput}
-              selected={item.label === selectedCategory}
-              label={item.label}
-              icon={item.icon}
-            />
-            
-          </div>
-        ))}
-      </div>
-    </div>
-  )
+  let bodyContent = <CategoryStep watch={watch} setCustomValue={setCustomValue} />
+
+  if(step === STEPS.LOCATION) bodyContent = <LocationStep watch={watch} setCustomValue={setCustomValue} />
 
   return (
     <Modal 
