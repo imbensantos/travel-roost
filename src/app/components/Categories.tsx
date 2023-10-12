@@ -66,14 +66,14 @@ export const CATEGORIES_LIST = [
     description: "This property has skiing activities!"
   },
   {
+    label: 'Arctic',
+    icon: FaSnowflake,
+    description: "This property is in the arctic!"
+  },
+  {
     label: 'Castles',
     icon: MdCastle,
     description: "This property is in a castle!"
-  },
-  {
-    label: 'Arctic',
-    icon: FaSnowflake,
-    description: "This property is arctic cold!"
   },
   {
     label: 'Cave',

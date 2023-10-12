@@ -46,8 +46,8 @@ const Modal: React.FC<ModalProps> = ({ actionLabel, onClose, onSubmit, body, dis
     secondaryAction()
   }, [disabled, secondaryAction])
 
-  if(!isOpen) return null
 
+  if(!isOpen) return null
   return (
     <>
       <div 
@@ -83,7 +83,7 @@ const Modal: React.FC<ModalProps> = ({ actionLabel, onClose, onSubmit, body, dis
             className={`
               translate 
               duration-300 
-              -full 
+              w-full 
               ${showModal ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'}
             `}
           >

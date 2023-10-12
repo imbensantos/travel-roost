@@ -2,12 +2,13 @@
 
 import { useCallback, useState } from "react"
 import { signOut } from "next-auth/react"
+import { User } from "@prisma/client"
 
 import { AiOutlineMenu } from "react-icons/ai"
 
-import { User } from "@prisma/client"
 import useRegisterModal from "@hooks/useRegisterModal"
 import useLoginModal from "@hooks/useLoginModal"
+import useRentModal from "@hooks/useRentModal"
 
 import Avatar from "@components/Avatar"
 import MenuItem from "./MenuItem"
@@ -19,26 +20,32 @@ interface UserMenuProps {
 const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
   const registerModal = useRegisterModal()
   const loginModal = useLoginModal()
-  const [isOpen, setIsOpen] = useState(false)
-  const toggleOpen = useCallback(() => {
-    setIsOpen((value) => !value)
-  }, [])
+  const rentModal = useRentModal()
 
-  const handleCloseMenu = useCallback(() => setIsOpen(false), [])
+  const [isOpen, setIsOpen] = useState(false)
+
+  const handleToggleDropdown = useCallback(() => setIsOpen((value) => !value), [])
+  const handleCloseDropdown = useCallback(() => setIsOpen(false), [])
+  const handleBlurDropdown = useCallback(() => setTimeout(handleCloseDropdown, 100), [handleCloseDropdown])
+
+  const handleRentClick = useCallback(() => {
+    if(!currentUser) return loginModal.onOpen()
+    rentModal.onOpen()
+  }, [currentUser, loginModal, rentModal])
 
 
   return (
     <div className="relative flex-grow flex-shrink-0 basis-auto lg:flex-initial">
       <div className="flex flex-row items-center gap-3 justify-end">
         <div
-          onClick={() => { }}
+          onClick={handleRentClick}
           className="hidden md:block text-sm font-semibold py-3 px-4 rounded-full hover:bg-neutral-100 transition cursor-pointer"
         >
           Perch your nest
         </div>
         <button
-          onClick={toggleOpen}
-          onBlur={() => setTimeout(handleCloseMenu, 100)}
+          onClick={handleToggleDropdown}
+          onBlur={handleBlurDropdown}
           className="p-4 md:py-1 md:px-2 border-[1px] border-neutral-200 flex flex-rw items-center gap-3 rounded-full cursor-pointer hover:shadow-md transition"
         >
           <AiOutlineMenu />
@@ -58,7 +65,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
                 <MenuItem onClick={() => { }} label="Reservations" />
                 <MenuItem onClick={() => { }} label="Properties" />
                 <hr className="my-2" />
-                <MenuItem onClick={() => { }} label="Perch your nest" />
+                <MenuItem onClick={rentModal.onOpen} label="Perch your nest" />
                 <MenuItem onClick={() => { }} label="Account" />
                 <hr className="my-2" />
                 <MenuItem onClick={() => signOut()} label="Log out" />
