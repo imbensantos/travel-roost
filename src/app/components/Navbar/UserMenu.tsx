@@ -24,6 +24,8 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
     setIsOpen((value) => !value)
   }, [])
 
+  const handleCloseMenu = useCallback(() => setIsOpen(false), [])
+
 
   return (
     <div className="relative flex-grow flex-shrink-0 basis-auto lg:flex-initial">
@@ -34,15 +36,16 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
         >
           Perch your nest
         </div>
-        <div
+        <button
           onClick={toggleOpen}
+          onBlur={() => setTimeout(handleCloseMenu, 100)}
           className="p-4 md:py-1 md:px-2 border-[1px] border-neutral-200 flex flex-rw items-center gap-3 rounded-full cursor-pointer hover:shadow-md transition"
         >
           <AiOutlineMenu />
           <div className="hidden md:block">
             <Avatar src={currentUser?.image} />
           </div>
-        </div>
+        </button>
       </div>
 
       {isOpen ? (
