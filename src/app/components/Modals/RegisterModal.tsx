@@ -11,6 +11,7 @@ import {GrFacebook} from "react-icons/gr"
 import { FcGoogle } from "react-icons/fc"
 
 import useRegisterModal from "@hooks/useRegisterModal"
+import useLoginModal from "@hooks/useLoginModal"
 
 import Modal from "./Modal"
 import Heading from "@components/Heading"
@@ -19,6 +20,8 @@ import Button from "@components/Button"
 
 const RegisterModal = () => {
   const registerModal = useRegisterModal()
+  const loginModal = useLoginModal()
+
   const [isLoading, setIsLoading] = useState(false)
 
   const { register, handleSubmit, formState: { errors } } = useForm<FieldValues>({
@@ -33,6 +36,11 @@ const RegisterModal = () => {
       .catch((error) => { toast.error("Something went wrong") })
       .finally(() => { setIsLoading(false) })
   }
+
+  const toggleLoginModal = useCallback(()=>{
+    registerModal.onClose()
+    loginModal.onOpen()
+  }, [loginModal, registerModal])
 
   const bodyContent = (
     <div className="flex flex-col gap-4">
@@ -110,7 +118,7 @@ const RegisterModal = () => {
         <p className="flex flex-row justify-center items-center gap-2">
           Already have an account? 
           <span 
-            onClick={registerModal.onClose}
+            onClick={toggleLoginModal}
             className="
               text-neutral-800 
               cursor-pointer 
