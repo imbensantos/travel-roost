@@ -17,8 +17,10 @@ import Modal from "./Modal"
 import Heading from "@components/Heading"
 import Input from "@components/Inputs/Input"
 import Button from "@components/Button"
+import { useRouter } from "next/navigation"
 
 const RegisterModal = () => {
+  const router = useRouter()
   const registerModal = useRegisterModal()
   const loginModal = useLoginModal()
 
@@ -35,10 +37,24 @@ const RegisterModal = () => {
       .then(() => { 
         toast.success('Successfully Registered!')
         registerModal.onClose()
-        loginModal.onOpen()
       })
       .catch((error) => { toast.error("Something went wrong") })
-      .finally(() => { setIsLoading(false) })
+      .finally(() => { 
+        signIn('credentials', {
+          ...data,
+          redirect: false,
+        }).then((callback) => {
+          setIsLoading(false)
+    
+          if(callback?.ok){
+            router.refresh()
+          }
+    
+          if(callback?.error){
+            toast.error(callback.error)
+          }
+        })
+      })
   }
 
   const toggleLoginModal = useCallback(()=>{
