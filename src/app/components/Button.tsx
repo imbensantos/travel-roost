@@ -20,7 +20,6 @@ const Button: React.FC<ButtonProps> = ({ label, onClick, iconClassName, disabled
         disabled:opacity-70 
         disabled:cursor-not-allowed 
         rounded-lg 
-        hover:opacity-80
         transition 
         w-full 
         active:scale-95
@@ -29,11 +28,16 @@ const Button: React.FC<ButtonProps> = ({ label, onClick, iconClassName, disabled
           border-neutral-900
           text-neutral-900
           hover:bg-neutral-100
-            hover:opacity-100
+          active:bg-neutral-200
         ` : `
           bg-primary
           border-primary
           text-white
+          hover:bg-primary-400
+          hover:border-primary-400
+          active:bg-primary-600
+          active:border-primary-600
+          hover:text-white
         `}
         ${small ? `
           py-1 
