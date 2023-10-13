@@ -14,6 +14,7 @@ import { FaSkiing, FaSnowflake } from 'react-icons/fa'
 import { IoDiamond } from 'react-icons/io5'
 
 
+// TODO: Separate Categories and Amenities list
 export const CATEGORIES_LIST = [
   {
     label: 'Beachfront',

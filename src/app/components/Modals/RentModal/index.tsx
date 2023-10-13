@@ -1,15 +1,15 @@
 "use client"
 
-import { useMemo, useState } from 'react'
+import { useCallback, useMemo, useState } from 'react'
 import { FieldValues, useForm } from 'react-hook-form'
 
 import useRentModal from '@hooks/useRentModal'
 
 import Modal from '@components/Modals/Modal'
-import Heading from '@components/Heading'
 import CategoryStep from './CategoryStep'
-import CountrySelection from '@components/Inputs/CountrySelection'
 import LocationStep from './LocationStep'
+import InfoStep from './InfoStep'
+import ImagesStep from './ImagesStep'
 
 enum STEPS {
   CATEGORY = 0,
@@ -39,6 +39,7 @@ const RentModal = () => {
       location: null,
       guestCount: 1,
       roomCount: 1,
+      bathroomCount: 1,
       imageSrc: '',
       price: 1,
       title: '',
@@ -46,13 +47,13 @@ const RentModal = () => {
     }
   })
 
-  const setCustomValue = (id: string, value: any) => {
+  const setCustomValue = useCallback((id: string, value: any) => {
     setValue(id, value, {
       shouldDirty: true,
       shouldTouch: true,
       shouldValidate: true
     })
-  }
+  }, [setValue])
 
   const handleBack = () => {
     if(step === STEPS.CATEGORY) return
@@ -70,9 +71,30 @@ const RentModal = () => {
     return 'Back'
    }, [step])
 
-  let bodyContent = <CategoryStep watch={watch} setCustomValue={setCustomValue} />
+   // let bodyContent = <CategoryStep watch={watch} setCustomValue={setCustomValue} />
 
-  if(step === STEPS.LOCATION) bodyContent = <LocationStep watch={watch} setCustomValue={setCustomValue} />
+  const bodyContent = (() => {
+    switch(step){
+      case STEPS.CATEGORY: 
+        return <CategoryStep watch={watch} setCustomValue={setCustomValue} />
+      
+
+      case STEPS.LOCATION: 
+        return <LocationStep watch={watch} setCustomValue={setCustomValue} />
+      
+
+      case STEPS.INFO: 
+        return <InfoStep watch={watch} setCustomValue={setCustomValue} />
+
+      case STEPS.IMAGES:
+        return <ImagesStep watch={watch} setCustomValue={setCustomValue} />
+
+      default:
+        return <></>
+    }
+  })()
+
+  // if(step === STEPS.LOCATION) bodyContent = <LocationStep watch={watch} setCustomValue={setCustomValue} />
 
   return (
     <Modal 
