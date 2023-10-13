@@ -29,7 +29,9 @@ const LocationStep: React.FC<CategoryStepProps> = ({ watch, setCustomValue }) =>
         value={selectedLocation}
         onChange={handleCountrySelection}
       />
-      <Map center={selectedLocation?.latlng} />
+      <div className='h-[35vh] w-full rounded-lg bg-neutral-50'>
+        <Map center={selectedLocation?.latlng} />
+      </div>
     </div>
   )
 }
