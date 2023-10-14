@@ -1,7 +1,10 @@
 "use client"
 
 import { useCallback, useMemo, useState } from 'react'
-import { FieldValues, useForm } from 'react-hook-form'
+import { useRouter } from 'next/navigation' 
+import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
+import axios from 'axios'
+import toast from 'react-hot-toast'
 
 import useRentModal from '@hooks/useRentModal'
 
@@ -10,6 +13,8 @@ import CategoryStep from './CategoryStep'
 import LocationStep from './LocationStep'
 import InfoStep from './InfoStep'
 import ImagesStep from './ImagesStep'
+import DescriptionStep from './DescriptionStep'
+import PriceStep from './PriceStep'
 
 enum STEPS {
   CATEGORY = 0,
@@ -21,8 +26,11 @@ enum STEPS {
 }
 
 const RentModal = () => {
+  const router = useRouter()
   const rentModal = useRentModal()
 
+  
+  const [isLoading, setIsLoading] = useState(false)
   const [step, setStep] = useState(STEPS.CATEGORY)
   const {
     register,
@@ -71,7 +79,22 @@ const RentModal = () => {
     return 'Back'
    }, [step])
 
-   // let bodyContent = <CategoryStep watch={watch} setCustomValue={setCustomValue} />
+  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    if(step != STEPS.PRICE){
+      return handleNext()
+    }
+    
+    setIsLoading(true)
+    axios.post('/api/listings', data)
+    .then(() => { 
+      toast.success('Listing created!')
+      router.refresh()
+      reset()
+      setStep(STEPS.CATEGORY)
+      rentModal.onClose()
+    }).catch(() => { toast.error('Something went wrong.') })
+    .finally(() => { setIsLoading(false) })
+  }
 
   const bodyContent = (() => {
     switch(step){
@@ -89,12 +112,20 @@ const RentModal = () => {
       case STEPS.IMAGES:
         return <ImagesStep watch={watch} setCustomValue={setCustomValue} />
 
+      case STEPS.DESCRIPTION:
+        return (
+          <DescriptionStep isLoading={isLoading} register={register} errors={errors} />
+          )
+
+      case STEPS.PRICE:
+        return (
+          <PriceStep isLoading={isLoading} register={register} errors={errors} />
+        )
+      
       default:
         return <></>
     }
   })()
-
-  // if(step === STEPS.LOCATION) bodyContent = <LocationStep watch={watch} setCustomValue={setCustomValue} />
 
   return (
     <Modal 

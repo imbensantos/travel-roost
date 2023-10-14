@@ -20,8 +20,6 @@ const ImageUpload: React.FC<ImageUploadProps> = ({onChange, value}) => {
     onChange(result.info.secure_url)
    }, [onChange])
 
-   console.log(CLOUDINARY_UPLOAD_PRESET)
-
   return (
     <CldUploadWidget 
       onUpload={handleUpload}
