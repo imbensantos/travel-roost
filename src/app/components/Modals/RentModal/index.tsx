@@ -9,12 +9,12 @@ import toast from 'react-hot-toast'
 import useRentModal from '@hooks/useRentModal'
 
 import Modal from '@components/Modals/Modal'
-import CategoryStep from './CategoryStep'
-import LocationStep from './LocationStep'
-import InfoStep from './InfoStep'
-import ImagesStep from './ImagesStep'
-import DescriptionStep from './DescriptionStep'
-import PriceStep from './PriceStep'
+import CategoryStep from './steps/CategoryStep'
+import LocationStep from './steps/LocationStep'
+import InfoStep from './steps/InfoStep'
+import ImagesStep from './steps/ImagesStep'
+import DescriptionStep from './steps/DescriptionStep'
+import PriceStep from './steps/PriceStep'
 
 enum STEPS {
   CATEGORY = 0,
@@ -32,6 +32,7 @@ const RentModal = () => {
   
   const [isLoading, setIsLoading] = useState(false)
   const [step, setStep] = useState(STEPS.CATEGORY)
+  
   const {
     register,
     handleSubmit,
@@ -98,14 +99,13 @@ const RentModal = () => {
 
   const bodyContent = (() => {
     switch(step){
+      default:
       case STEPS.CATEGORY: 
         return <CategoryStep watch={watch} setCustomValue={setCustomValue} />
-      
 
       case STEPS.LOCATION: 
         return <LocationStep watch={watch} setCustomValue={setCustomValue} />
       
-
       case STEPS.INFO: 
         return <InfoStep watch={watch} setCustomValue={setCustomValue} />
 
@@ -115,15 +115,12 @@ const RentModal = () => {
       case STEPS.DESCRIPTION:
         return (
           <DescriptionStep isLoading={isLoading} register={register} errors={errors} />
-          )
+        )
 
       case STEPS.PRICE:
         return (
           <PriceStep isLoading={isLoading} register={register} errors={errors} />
         )
-      
-      default:
-        return <></>
     }
   })()
 
@@ -134,7 +131,7 @@ const RentModal = () => {
       secondaryAction={handleBack}
       isOpen={rentModal.isOpen}
       onClose={rentModal.onClose}
-      onSubmit={handleNext}
+      onSubmit={handleSubmit(onSubmit)}
       title='Perch your nest!'
       body={bodyContent}
     />

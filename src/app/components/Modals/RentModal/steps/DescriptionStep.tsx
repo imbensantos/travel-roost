@@ -24,8 +24,8 @@ const ImagesStep: React.FC<ImagesStepProps> = ({ isLoading, register, errors }) 
         errors={errors}
         required
       />
-      <hr />
       <Input
+        type="textbox"
         id='description'
         label='Description'
         disabled={isLoading}

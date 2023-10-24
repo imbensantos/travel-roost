@@ -1,9 +1,9 @@
+import { useMemo } from 'react'
+import dynamic from 'next/dynamic'
 import { FieldValues, UseFormWatch } from 'react-hook-form'
 
 import Heading from '@components/Heading'
 import CountrySelection, { CountrySelectionValue } from '@components/Inputs/CountrySelection'
-import { useMemo } from 'react'
-import dynamic from 'next/dynamic'
 
 interface CategoryStepProps {
   watch: UseFormWatch<FieldValues>,
@@ -15,7 +15,8 @@ const LocationStep: React.FC<CategoryStepProps> = ({ watch, setCustomValue }) =>
   const selectedLocation = watch('location')
   const handleCountrySelection = (value: CountrySelectionValue) => setCustomValue('location', value)
   
-  // selectedLocation is a necessary dependency as this is a workaround for Leaflet
+  // NOTE: selectedLocation is a necessary dependency as this is a workaround for Leaflet
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const Map = useMemo(() => dynamic(() => import('@components/Map'), { ssr: false }), [selectedLocation]) 
   
 
