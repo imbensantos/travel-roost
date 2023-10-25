@@ -21,7 +21,7 @@ export default async function getReservations(params: IParams) {
       orderBy: { createdAt: "desc" },
     });
 
-    return reservations;
+    return reservations
   } catch (error: any) {
     throw new Error(error);
   }

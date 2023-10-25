@@ -72,7 +72,7 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing, currentUser, res
       .then(() => {
         toast.success('Listing reserved!')
         setDateRange(initialDateRange)
-        router.refresh()
+        router.push('/trips')
       })
       .catch(() => { toast.error('Something went wrong.') })
       .finally(() => { setIsLoading(false) })
@@ -91,7 +91,6 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing, currentUser, res
   useEffect(() => {
     if (dateRange.startDate && dateRange.endDate) {
       setDayCount(differenceInCalendarDays(dateRange.endDate, dateRange.startDate))
-      // const dayCount = differenceInCalendarDays(dateRange.endDate, dateRange.startDate)
 
       if (dayCount && listing.price) {
         setStayPrice((dayCount * listing.price))

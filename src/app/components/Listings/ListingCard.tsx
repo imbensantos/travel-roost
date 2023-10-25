@@ -37,7 +37,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
   const location = getByValue(data.locationValue)
 
   const price = useMemo(() => {
-    if (reservation) return reservation.totalPrice
+    if (reservation) return reservation.totalPrice.toLocaleString('us')
     return data.price.toLocaleString('us')
 
   }, [reservation, data.price])

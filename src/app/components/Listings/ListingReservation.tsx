@@ -32,7 +32,7 @@ const ListingReservation: React.FC<ListingReservationProps> = ({
     <div className="bg-white rounded-xl border-[1px] border-neutral-200 overflow-hidden">
       <div className="flex flex-row items-center gap-1 p-4">
         <span className="text-2xl font-semibold">
-          ${price}
+          ${price.toLocaleString('us')}
         </span>
         <span className="font-light text-neutral-600"> night</span>
       </div>
@@ -53,17 +53,17 @@ const ListingReservation: React.FC<ListingReservationProps> = ({
       {!isInvalid ? (
         <>
           <div className="flex flex-row items-center justify-between font-light text-lg px-4 pt-4 pb-2">
-            <span>${price} x {dayCount} {dayCount > 1 ? 'nights' : 'night'}</span>
-            <span>${stayPrice}</span>
+            <span>${price.toLocaleString('us')} x {dayCount} {dayCount > 1 ? 'nights' : 'night'}</span>
+            <span>${stayPrice.toLocaleString('us')}</span>
           </div>
           <div className="flex flex-row items-center justify-between font-light text-lg px-4 pb-4 pt-2">
             <span>Travel Roost service fee</span>
-            <span>${serviceFee}</span>
+            <span>${serviceFee.toLocaleString('us')}</span>
           </div>
           <hr />
           <div className="p-4 flex flex-row items-center justify-between font-semibold text-lg">
             <span>Total</span>
-            <span>${totalPrice}</span>
+            <span>${totalPrice.toLocaleString('us')}</span>
           </div>
         </>
       ) : null}
