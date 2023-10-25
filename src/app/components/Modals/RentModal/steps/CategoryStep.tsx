@@ -1,8 +1,9 @@
-import { CATEGORIES_LIST } from '@components/Categories'
+import { FieldValues, UseFormWatch } from 'react-hook-form'
 
 import Heading from '@components/Heading'
 import CategoryInput from '@components/Inputs/CategoryInput'
-import { FieldValues, UseFormWatch } from 'react-hook-form'
+
+import { CATEGORIES_LIST } from '@components/Categories/constants'
 
 interface CategoryStepProps {
   watch: UseFormWatch<FieldValues>,

@@ -1,10 +1,3 @@
-"use client"
-
-import { usePathname, useSearchParams } from 'next/navigation'
-
-import Container from '@components/Container'
-import Category from '@components/Category'
-
 import { TbBeach, TbMountain } from 'react-icons/tb'
 import { GiBarn, GiBoatFishing, GiCactus, GiCampingTent, GiCaveEntrance, GiIsland } from 'react-icons/gi'
 import { LiaSwimmingPoolSolid } from 'react-icons/lia'
@@ -12,7 +5,6 @@ import { MdCastle, MdFreeBreakfast, MdOutlineVilla } from 'react-icons/md'
 import { BsFire } from 'react-icons/bs'
 import { FaSkiing, FaSnowflake } from 'react-icons/fa'
 import { IoDiamond } from 'react-icons/io5'
-
 
 // TODO: Separate Categories and Amenities list
 export const CATEGORIES_LIST = [
@@ -98,31 +90,3 @@ export const CATEGORIES_LIST = [
   },
   
 ]
-
-const Categories = () => {
-  const params = useSearchParams()
-  const pathname = usePathname()
-  const categoryName = params?.get('category')
-
-  const isMainPage = pathname === "/"
-  
-  // Hides categories if not homepage
-  if(!isMainPage) return null
-
-  return (
-    <Container>
-      <div className='pt-4 flex flex-row items-center justify-between overflow-x-auto'>
-        {CATEGORIES_LIST.map((category) => (
-          <Category 
-            key={category.label}
-            label={category.label}
-            icon={category.icon}
-            selected={category.label === categoryName}
-          />
-        ))}
-      </div>
-    </Container>
-  )
-}
-
-export default Categories
