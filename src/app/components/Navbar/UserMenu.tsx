@@ -31,10 +31,14 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
   const handleBlurDropdown = useCallback(() => setTimeout(handleCloseDropdown, 100), [handleCloseDropdown])
 
   const handleRentClick = useCallback(() => {
-    if(!currentUser) return loginModal.onOpen()
+    if (!currentUser) return loginModal.onOpen()
     rentModal.onOpen()
   }, [currentUser, loginModal, rentModal])
 
+  const handleLogout = () => {
+    signOut()
+    router.push("/")
+  }
 
   return (
     <div className="relative flex-grow flex-shrink-0 basis-auto lg:flex-initial">
@@ -64,13 +68,13 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
               <>
                 <MenuItem onClick={() => { router.push("/trips") }} label="Trips" />
                 <MenuItem onClick={() => { }} label="Wishlists" />
-                <MenuItem onClick={() => { }} label="Reservations" />
+                <MenuItem onClick={() => { router.push("/reservations") }} label="Reservations" />
                 <MenuItem onClick={() => { }} label="Properties" />
                 <hr className="my-2" />
                 <MenuItem onClick={rentModal.onOpen} label="Perch your nest" />
                 <MenuItem onClick={() => { }} label="Account" />
                 <hr className="my-2" />
-                <MenuItem onClick={() => signOut()} label="Log out" />
+                <MenuItem onClick={handleLogout} label="Log out" />
               </>
             ) : (
               <>
