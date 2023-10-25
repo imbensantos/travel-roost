@@ -12,8 +12,8 @@ import markerShadow from "leaflet/dist/images/marker-shadow.png"
 // We need to reset the Leaflet Icon Default in order for it to work correctly with React
 delete L.Icon.Default.prototype._getIconUrl
 L.Icon.Default.mergeOptions({
-  iconUrl: markerIcon.src,
-  iconRetinaUrl: markerIcon2x.src,
+  iconUrl: '../images/marker.svg',
+  iconRetinaUrl: '../images/marker.svg',
   shadowUrl: markerShadow.src
 })
 
