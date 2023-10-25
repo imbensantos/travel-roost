@@ -16,8 +16,10 @@ interface ListingCardProps {
   data: Listing,
   reservation?: Reservation,
   onAction?: (id: string) => void,
+  onSecondaryAction?: (id: string) => void,
   disabled?: boolean,
   actionLabel?: string,
+  secondaryActionLabel?: string,
   actionId?: string,
   currentUser?: User | null,
 }
@@ -26,8 +28,10 @@ const ListingCard: React.FC<ListingCardProps> = ({
   data,
   reservation,
   onAction,
+  onSecondaryAction,
   disabled,
   actionLabel,
+  secondaryActionLabel,
   actionId = "",
   currentUser,
 }) => {
@@ -58,6 +62,14 @@ const ListingCard: React.FC<ListingCardProps> = ({
     onAction?.(actionId)
     
   }, [onAction, actionId, disabled])
+
+  const handleEdit = useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+    if (disabled) return
+
+    onSecondaryAction?.(actionId)
+
+  }, [disabled, actionId, onSecondaryAction])
 
   const handleClick = () => router.push(`/listings/${data.id}`)
 
@@ -102,6 +114,15 @@ const ListingCard: React.FC<ListingCardProps> = ({
             <span className='font-light'> night</span>
           ) : null}
         </div>
+        {onSecondaryAction && secondaryActionLabel ? (
+          <Button 
+            disabled={disabled}
+            small
+            label={secondaryActionLabel}
+            onClick={handleEdit}
+            outline
+          />
+        ) : null}
         {onAction && actionLabel ? (
           <Button 
             disabled={disabled}
