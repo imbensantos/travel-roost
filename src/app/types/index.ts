@@ -15,3 +15,11 @@ export type SafeListing = Omit<
 > & {
   createdAt: string
 }
+
+export type LocationType = {
+    value: string;
+    label: string;
+    flag: string;
+    latlng: [number, number];
+    region: string;
+} | undefined

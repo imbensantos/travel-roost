@@ -10,13 +10,13 @@ import useCountries from '@hooks/useCountries'
 
 import HeartButton from '@components/HeartButton'
 import Button from '@components/Button'
-
+import { LocationType } from '@/types'
 
 interface ListingCardProps {
   data: Listing,
   reservation?: Reservation,
   onAction?: (id: string) => void,
-  onSecondaryAction?: (id: string) => void,
+  onSecondaryAction?: (data: Listing, location: LocationType) => void,
   disabled?: boolean,
   actionLabel?: string,
   secondaryActionLabel?: string,
@@ -60,16 +60,16 @@ const ListingCard: React.FC<ListingCardProps> = ({
 
     if (disabled) return
     onAction?.(actionId)
-    
+
   }, [onAction, actionId, disabled])
 
   const handleEdit = useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
     if (disabled) return
 
-    onSecondaryAction?.(actionId)
+    onSecondaryAction?.(data, location)
 
-  }, [disabled, actionId, onSecondaryAction])
+  }, [disabled, onSecondaryAction, data, location])
 
   const handleClick = () => router.push(`/listings/${data.id}`)
 
@@ -94,7 +94,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
             '
           />
           <div className='absolute top-3 right-3'>
-            <HeartButton 
+            <HeartButton
               listingId={data.id}
               currentUser={currentUser}
             />
@@ -115,7 +115,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
           ) : null}
         </div>
         {onSecondaryAction && secondaryActionLabel ? (
-          <Button 
+          <Button
             disabled={disabled}
             small
             label={secondaryActionLabel}
@@ -124,7 +124,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
           />
         ) : null}
         {onAction && actionLabel ? (
-          <Button 
+          <Button
             disabled={disabled}
             small
             label={actionLabel}
