@@ -7,8 +7,8 @@ import axios from 'axios'
 import toast from 'react-hot-toast'
 
 import Container from '@components/Container'
-import Heading from '@/components/Heading'
-import ListingCard from '@/components/Listings/ListingCard'
+import Heading from '@components/Heading'
+import ListingCard from '@components/Listings/ListingCard'
 
 interface TripsClientProps{
   reservations: (Reservation & { listing: Listing })[],
