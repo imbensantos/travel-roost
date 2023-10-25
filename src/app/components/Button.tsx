@@ -22,22 +22,22 @@ const Button: React.FC<ButtonProps> = ({ label, onClick, iconClassName, disabled
         rounded-lg 
         transition 
         w-full 
-        active:scale-95
+        enabled:active:scale-95
         ${outline ? `
           bg-white
           border-neutral-900
           text-neutral-900
-          hover:bg-neutral-100
-          active:bg-neutral-200
+          enabled:hover:bg-neutral-100
+          enabled:active:bg-neutral-200
         ` : `
           bg-primary
           border-primary
           text-white
-          hover:bg-primary-400
-          hover:border-primary-400
-          active:bg-primary-600
-          active:border-primary-600
+          enabled:hover:bg-primary-400
+          enabled:hover:border-primary-400
           hover:text-white
+          enabled:active:bg-primary-600
+          enabled:active:border-primary-600
         `}
         ${small ? `
           py-1 

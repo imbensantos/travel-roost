@@ -72,7 +72,9 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
         <div className="text-xl font-semibold flex flex-row items-center gap-2">
           Where you&apos;ll be
         </div>
-        <Map center={coordinates} />
+        <div className='h-[35vh] w-full rounded-lg bg-neutral-50'>
+          <Map center={coordinates} />
+        </div>
       </div>
     </div>
   )
