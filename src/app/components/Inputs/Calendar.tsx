@@ -19,12 +19,11 @@ const Calendar: React.FC<CalendarProps> = ({
     <DateRange 
       rangeColors={["#141d0f"]}
       ranges={[value]}
-      date={new Date()}
       onChange={onChange}
       direction='vertical'
-      showDateDisplay={false}
       minDate={new Date()}
       disabledDates={disabledDates}
+      showDateDisplay={false}
     />
   )
 }

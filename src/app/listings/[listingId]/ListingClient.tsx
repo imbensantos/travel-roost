@@ -18,8 +18,8 @@ import axios from 'axios'
 import { Range } from 'react-date-range'
 
 const initialDateRange = {
-  startDate: new Date(),
-  endDate: new Date(),
+  startDate: undefined,
+  endDate: new Date(""),
   key: 'selection'
 }
 
