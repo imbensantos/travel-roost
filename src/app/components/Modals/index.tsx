@@ -1,6 +1,7 @@
 import RegisterModal from './RegisterModal'
 import LoginModal from './LoginModal'
 import RentModal from './RentModal'
+import SearchModal from './SearchModal'
 
 const Modals = () => {
   return (
@@ -8,6 +9,7 @@ const Modals = () => {
       <RegisterModal />
       <LoginModal />
       <RentModal />
+      <SearchModal />
     </>
   )
 }
