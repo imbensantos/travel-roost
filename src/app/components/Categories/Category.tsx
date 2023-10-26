@@ -49,7 +49,7 @@ const Category: React.FC<CategoryProps> = ({ label, icon: Icon, selected }) => {
         transition
         cursor-pointer
         group
-        ${selected ? 'border-b-neutral-900' : 'border-transparent hover:border-b-neutral-200'}
+        ${selected ? 'border-b-accent-600' : 'border-transparent hover:border-b-neutral-200'}
         ${selected ? 'text-neutral-900' : 'text-neutral-500 hover:text-neutral-700'}
       `}
     >
