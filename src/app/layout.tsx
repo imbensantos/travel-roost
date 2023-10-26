@@ -10,6 +10,7 @@ import ToasterProvider from '@providers/ToasterProvider'
 
 import Navbar from '@components/Navbar'
 import Modals from '@components/Modals'
+import Footer from '@components/Footer'
 
 const nunito = Nunito({
   subsets: ['latin']
@@ -37,6 +38,7 @@ export default async function RootLayout({
         <div className='pb-20 pt-28'>
           {children}
         </div>
+        <Footer />
       </body>
     </html>
   )
