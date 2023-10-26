@@ -36,8 +36,8 @@ const ReservationsClient: React.FC<ReservationsClientProps> = ({reservations, cu
   return (
     <Container>
       <Heading 
-        title="Reservations"      
-        subtitle="Bookings on your properties"
+        title="Reservations"
+        subtitle="Bookings on your roosts"
       />
       <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-8">
         {reservations.map(reservation => (

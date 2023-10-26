@@ -80,7 +80,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
       className='col-span-1 cursor-pointer group'
     >
       <div className='flex flex-col gap-2 w-full'>
-        <div className='aspect-square w-full relative overflow-hidden rounded-xl group-active:scale-95 transition'>
+        <div className='aspect-square w-full relative overflow-hidden rounded-xl group-active:scale-95 transition bg-neutral-50'>
           <Image
             fill
             alt={`${data.title} Listing`}
