@@ -16,7 +16,7 @@ const nunito = Nunito({
 export const metadata: Metadata = {
   title: 'Travel Roost',
   description: `Travel Roost - Your Nest Away from Home! Find the perfect place to stay at an amazing price in over 191 countries.`,
-  icons: {icon: "/images/logo.svg"}
+  icons: {icon: "/images/logo-icon.svg"}
 }
 
 export default async function RootLayout({
