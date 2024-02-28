@@ -1,7 +1,7 @@
 import { Listing } from "@prisma/client";
 import { create } from "zustand";
 
-import { LocationType } from "../types";
+import { LocationType } from "@/types";
 
 interface RentModalStore {
   isOpen: boolean,

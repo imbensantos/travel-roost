@@ -10,7 +10,7 @@ import Container from '@components/Container'
 import Heading from '@components/Heading'
 import ListingCard from '@components/Listings/ListingCard'
 import useRentModal from '@hooks/useRentModal'
-import { LocationType } from "../../types"
+import { LocationType } from "@/types"
 
 interface PropertiesClientProps {
   listings: Listing[],
