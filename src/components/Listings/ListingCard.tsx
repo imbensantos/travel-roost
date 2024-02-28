@@ -10,7 +10,7 @@ import useCountries from '@hooks/useCountries'
 
 import HeartButton from '@components/HeartButton'
 import Button from '@components/Button'
-import { LocationType } from '@/types'
+import { LocationType } from '../../../types'
 
 interface ListingCardProps {
   data: Listing,

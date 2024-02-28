@@ -9,9 +9,9 @@ interface InfoStepProps {
 }
 
 const InfoStep: React.FC<InfoStepProps> = ({ watch, setCustomValue }) => {
-  const guestCount = watch('guestCount')
-  const roomCount = watch('roomCount')
-  const bathroomCount = watch('bathroomCount')
+  const guestCount = watch('guestCount') || 1
+  const roomCount = watch('roomCount') || 1
+  const bathroomCount = watch('bathroomCount') || 1
 
   const handleGuestCountInput = (value:number) => setCustomValue('guestCount', value)
   const handleRoomCountInput = (value:number) => setCustomValue('roomCount', value)

@@ -38,7 +38,9 @@ const RegisterModal = () => {
         toast.success('Successfully Registered!')
         registerModal.onClose()
       })
-      .catch((error) => { toast.error("Something went wrong") })
+      .catch((error) => { 
+        toast.error("Something went wrong")
+       })
       .finally(() => { 
         signIn('credentials', {
           ...data,

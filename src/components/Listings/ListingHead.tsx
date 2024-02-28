@@ -5,6 +5,7 @@ import useCountries from "@hooks/useCountries"
 
 import Heading from "@components/Heading"
 import HeartButton from "../HeartButton"
+import { IoChevronBackCircle } from "react-icons/io5"
 
 
 interface ListingHeadProps {
@@ -27,10 +28,15 @@ const ListingHead: React.FC<ListingHeadProps> = ({
 
   return (
     <>
-      <Heading 
-        title={title}
-        subtitle={`${location?.region}, ${location?.label}`}
-      />
+      <div className="flex flex-row gap-5 items-center justify-start relative">
+        <span className="text-neutral-200 text-lg lg:absolute top-0 right-[105%]">
+          <IoChevronBackCircle size={48} />
+        </span>
+        <Heading 
+          title={title}
+          subtitle={`${location?.region}, ${location?.label}`}
+        />
+      </div>
       <div className="w-full h-[60vh] bg-neutral-50 overflow-hidden rounded-xl relative">
         <Image 
           alt={`${title}`}
